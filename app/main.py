@@ -22,7 +22,8 @@ class Animal:
 
     def __repr__(self) -> str:
         info = (
-            f"Name: {self.name}, Health: {self.health}, "
+            f"Name: {self.name}, "
+            f"Health: {self.health}, "
             f"Hidden: {self.hidden}"
         )
         return f"{{{info}}}"
@@ -41,3 +42,10 @@ class Carnivore(Animal):
             return
         target.health -= 50
         target.update_life_status()
+
+
+def bite(target: Herbivore) -> None:
+    for animal in Animal.alive:
+        if isinstance(animal, Carnivore):
+            animal.bite(target)
+            break
